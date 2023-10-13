@@ -4,10 +4,12 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState();
   console.log("data", data);
+
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/albums/1/photos")
       .then((response) => response.json())
       .then((jsonData) => {
+        console.log("jsonData", jsonData);
         setData(jsonData);
         setTimeout(() => {
           setLoading(false);

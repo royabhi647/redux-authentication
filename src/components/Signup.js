@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addUser } from "../Redux/userSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 function Signup() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -27,6 +28,9 @@ function Signup() {
     });
     toast.success("Successfully Sign up!");
     console.log("User registered:", formData);
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
   };
 
   return (
