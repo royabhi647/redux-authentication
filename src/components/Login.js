@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../Redux/userSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
-  const userList = useSelector((state) => state.user.userList);
   const navigate = useNavigate();
+  const userList = useSelector((state) => state.user.userList);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,9 +30,7 @@ function Login() {
         password: "",
       });
       toast.success("Successfully LoggedIn!");
-      setTimeout(() => {
-        navigate("/home");
-      }, 1000);
+      navigate("/home");
     } else {
       toast.error("User not found!");
     }

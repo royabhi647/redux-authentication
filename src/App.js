@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import Home from "./components/Home";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -16,7 +17,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/home" element={<Home />} />
+            <Route exact path="/home" element={<PrivateRoute />}>
+              <Route exact path="/home" element={<Home />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </div>
